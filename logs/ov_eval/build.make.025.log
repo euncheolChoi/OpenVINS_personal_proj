@@ -1,0 +1,13 @@
+[ 22%] Built target ov_eval_lib
+[ 54%] Built target format_converter
+[ 54%] Built target error_simulation
+[ 54%] Built target pose_to_file
+[ 54%] Built target live_align_trajectory
+[ 54%] Built target timing_histogram
+[ 83%] Built target error_singlerun
+[ 83%] Built target plot_trajectories
+[ 83%] Built target timing_comparison
+[ 83%] Built target error_dataset
+[ 90%] Built target timing_percentages
+[ 93%] Built target timing_flamegraph
+[100%] Built target error_comparison
