@@ -68,7 +68,8 @@ struct CameraData {
   std::vector<cv::Mat> masks;
 
   /// Sort function to allow for using of STL containers
-  bool operator<(const CameraData &other) const {
+  bool operator<(const CameraData &other) const 
+  {
     if (timestamp == other.timestamp) {
       int id = *std::min_element(sensor_ids.begin(), sensor_ids.end());
       int id_other = *std::min_element(other.sensor_ids.begin(), other.sensor_ids.end());
@@ -77,6 +78,30 @@ struct CameraData {
       return timestamp < other.timestamp;
     }
   }
+
+  // CamData 타입의 변수를 출력하기 위한 << 연산자 오버로딩 
+  friend std::ostream& operator<<(std::ostream& os, const CameraData& data) {
+    os << "Timestamp: " << data.timestamp << std::endl;
+    os << "Sensor IDs: ";
+    for (const auto& id : data.sensor_ids) {
+      os << id << " ";
+    }
+    os << std::endl;
+
+    // os << "Images:" << std::endl;
+    // for (const auto& image : data.images) {
+    //   os << image << std::endl;  
+    // }
+
+    // os << "Masks:" << std::endl;
+    // for (const auto& mask : data.masks) {
+    //   os << mask << std::endl;  
+    // }
+
+    return os;
+  }
+
+  
 };
 
 } // namespace ov_core

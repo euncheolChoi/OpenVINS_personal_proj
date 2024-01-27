@@ -1,8 +1,0 @@
-[  6%] [32m[1mLinking CXX shared library /catkin_ws/devel/.private/ov_init/lib/libov_init_lib.so[0m
-[ 62%] Built target ov_init_lib
-[ 81%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_dynamic_init[0m
-[ 81%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_dynamic_mle[0m
-[ 81%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_simulation[0m
-[ 87%] Built target test_simulation
-[ 93%] Built target test_dynamic_mle
-[100%] Built target test_dynamic_init

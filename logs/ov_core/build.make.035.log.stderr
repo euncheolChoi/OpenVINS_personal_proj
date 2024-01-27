@@ -1,0 +1,8 @@
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackAruco.cpp:[m[K In member function ‘[01m[Kvirtual void ov_core::TrackAruco::feed_new_camera(const ov_core::CameraData&)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackAruco.cpp:48:24:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst struct ov_core::CameraData[m[K’ has no member named ‘[01m[Kimage[m[K’; did you mean ‘[01m[Kimages[m[K’?
+   48 |   std::cout << message.[01;31m[Kimage[m[K << std::endl;
+      |                        [01;31m[K^~~~~[m[K
+      |                        [32m[Kimages[m[K
+make[2]: *** [CMakeFiles/ov_core_lib.dir/build.make:128: CMakeFiles/ov_core_lib.dir/src/track/TrackAruco.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:208: CMakeFiles/ov_core_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

@@ -20,6 +20,20 @@ else ()
     add_definitions(-DENABLE_ARUCO_TAGS=1)
 endif ()
 
+
+##############################################
+# If we will compile with April support
+option(ENABLE_APRIL_TAGS "Enable or disable APRIL tag (disable if no contrib modules)" ON)
+if (NOT ENABLE_APRIL_TAGS)
+    add_definitions(-DENABLE_APRIL_TAGS=0)
+    message(WARNING "DISABLING APRIL TRACKING!")
+else ()
+    add_definitions(-DENABLE_APRIL_TAGS=1)
+endif ()
+##############################################
+
+
+
 # check if we have our python libs files (will search for python3 then python2 installs)
 # sudo apt-get install python-matplotlib python-numpy python-dev
 # https://cmake.org/cmake/help/v3.10/module/FindPythonLibs.html

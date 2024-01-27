@@ -44,6 +44,7 @@ void TrackAruco::feed_new_camera(const CameraData &message)
   // Thus here we should just call the monocular version two times
 #if ENABLE_ARUCO_TAGS
   size_t num_images = message.images.size();
+  // std::cout << message << std::endl;
   parallel_for_(cv::Range(0, (int)num_images), LambdaBody([&](const cv::Range &range) {
                   for (int i = range.start; i < range.end; i++) {
                     perform_tracking(message.timestamp, message.images.at(i), message.sensor_ids.at(i), message.masks.at(i));

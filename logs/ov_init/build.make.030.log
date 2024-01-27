@@ -1,0 +1,19 @@
+[35m[1mScanning dependencies of target ov_init_lib[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ov_init_lib.dir/src/init/InertialInitializer.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ov_init_lib.dir/src/sim/SimulatorInit.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ov_init_lib.dir/src/dynamic/DynamicInitializer.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/ov_init_lib.dir/src/static/StaticInitializer.cpp.o[0m
+[ 31%] [32m[1mLinking CXX shared library /catkin_ws/devel/.private/ov_init/lib/libov_init_lib.so[0m
+[ 62%] Built target ov_init_lib
+[35m[1mScanning dependencies of target test_dynamic_init[0m
+[35m[1mScanning dependencies of target test_dynamic_mle[0m
+[35m[1mScanning dependencies of target test_simulation[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/test_dynamic_init.dir/src/test_dynamic_init.cpp.o[0m
+[ 75%] [32mBuilding CXX object CMakeFiles/test_simulation.dir/src/test_simulation.cpp.o[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/test_dynamic_mle.dir/src/test_dynamic_mle.cpp.o[0m
+[ 87%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_simulation[0m
+[ 87%] Built target test_simulation
+[ 93%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_dynamic_mle[0m
+[ 93%] Built target test_dynamic_mle
+[100%] [32m[1mLinking CXX executable /catkin_ws/devel/.private/ov_init/lib/ov_init/test_dynamic_init[0m
+[100%] Built target test_dynamic_init
