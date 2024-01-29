@@ -1,0 +1,7 @@
+In file included from [01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:23[m[K:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.h:22:[m[K [01;31m[Kerror: [m[Kunterminated #ifndef
+   22 | #ifndef OV_CORE_TRACK_APRIL_H
+      | 
+make[2]: *** [CMakeFiles/ov_core_lib.dir/build.make:245: CMakeFiles/ov_core_lib.dir/src/track/TrackApril.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:208: CMakeFiles/ov_core_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

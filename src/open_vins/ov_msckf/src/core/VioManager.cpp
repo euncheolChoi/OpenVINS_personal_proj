@@ -25,6 +25,9 @@
 #include "feat/FeatureDatabase.h"
 #include "feat/FeatureInitializer.h"
 #include "track/TrackAruco.h"
+// Personal modification(Cheol)
+#include "track/TrackApril.h"
+
 #include "track/TrackDescriptor.h"
 #include "track/TrackKLT.h"
 #include "track/TrackSIM.h"
@@ -141,11 +144,20 @@ VioManager::VioManager(VioManagerOptions &params_) : thread_init_running(false),
   }
 
   // Initialize our aruco tag extractor
-  if (params.use_aruco) 
+  // if (params.use_aruco) 
+  // {
+  //   trackARUCO = std::shared_ptr<TrackBase>(new TrackAruco(state->_cam_intrinsics_cameras, state->_options.max_aruco_features,
+  //                                                          params.use_stereo, params.histogram_method, params.downsize_aruco));
+  // }
+
+  // Initialize our april tag extractor
+  // 여기서 선언 후, track_image_and_update 함수에서 호출 
+  if (params.use_april) 
   {
-    trackARUCO = std::shared_ptr<TrackBase>(new TrackAruco(state->_cam_intrinsics_cameras, state->_options.max_aruco_features,
+    trackAPRIL = std::shared_ptr<TrackBase>(new TrackApril(state->_cam_intrinsics_cameras, state->_options.max_aruco_features,
                                                            params.use_stereo, params.histogram_method, params.downsize_aruco));
   }
+
 
   // Initialize our state propagator
   propagator = std::make_shared<Propagator>(params.imu_noises, params.gravity_mag);
@@ -291,9 +303,18 @@ void VioManager::track_image_and_update(const ov_core::CameraData &message_const
   // If the aruco tracker is available, the also pass to it
   // NOTE: binocular tracking for aruco doesn't make sense as we by default have the ids
   // NOTE: thus we just call the stereo tracking if we are doing binocular!
-  if (is_initialized_vio && trackARUCO != nullptr) {
-    trackARUCO->feed_new_camera(message);
+  // if (is_initialized_vio && trackARUCO != nullptr) {
+  //   trackARUCO->feed_new_camera(message);
+  // }
+
+  // #####################################################################
+  // Personal modification(Cheol)
+  if (is_initialized_vio && trackAPRIL != nullptr) 
+  {
+    trackAPRIL->feed_new_camera(message);
   }
+  // #####################################################################
+
   rT2 = boost::posix_time::microsec_clock::local_time();
 
   // Check if we should do zero-velocity, if so update the state with it
@@ -376,13 +397,25 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   std::vector<std::shared_ptr<Feature>> feats_lost, feats_marg, feats_slam;
   feats_lost = trackFEATS->get_feature_database()->features_not_containing_newer(state->_timestamp, false, true);
 
+  // // Don't need to get the oldest features until we reach our max number of clones
+  // if ((int)state->_clones_IMU.size() > state->_options.max_clone_size || (int)state->_clones_IMU.size() > 5) {
+  //   feats_marg = trackFEATS->get_feature_database()->features_containing(state->margtimestep(), false, true);
+  //   if (trackARUCO != nullptr && message.timestamp - startup_time >= params.dt_slam_delay) {
+  //     feats_slam = trackARUCO->get_feature_database()->features_containing(state->margtimestep(), false, true);
+  //   }
+  // }
+
+  // ##################################################################################
   // Don't need to get the oldest features until we reach our max number of clones
+  // Personal moodification(Cheol)
   if ((int)state->_clones_IMU.size() > state->_options.max_clone_size || (int)state->_clones_IMU.size() > 5) {
     feats_marg = trackFEATS->get_feature_database()->features_containing(state->margtimestep(), false, true);
-    if (trackARUCO != nullptr && message.timestamp - startup_time >= params.dt_slam_delay) {
-      feats_slam = trackARUCO->get_feature_database()->features_containing(state->margtimestep(), false, true);
+    if (trackAPRIL != nullptr && message.timestamp - startup_time >= params.dt_slam_delay) {
+      feats_slam = trackAPRIL->get_feature_database()->features_containing(state->margtimestep(), false, true);
     }
   }
+ // ##################################################################################
+
 
   // Remove any lost features that were from other image streams
   // E.g: if we are cam1 and cam0 has not processed yet, we don't want to try to use those in the update yet
@@ -465,9 +498,29 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // NOTE: we only enforce this if the current camera message is where the feature was seen from
   // NOTE: if you do not use FEJ, these types of slam features *degrade* the estimator performance....
   // NOTE: we will also marginalize SLAM features if they have failed their update a couple times in a row
+  // for (std::pair<const size_t, std::shared_ptr<Landmark>> &landmark : state->_features_SLAM) {
+  //   if (trackARUCO != nullptr) {
+  //     std::shared_ptr<Feature> feat1 = trackARUCO->get_feature_database()->get_feature(landmark.second->_featid);
+  //     if (feat1 != nullptr)
+  //       feats_slam.push_back(feat1);
+  //   }
+  //   std::shared_ptr<Feature> feat2 = trackFEATS->get_feature_database()->get_feature(landmark.second->_featid);
+  //   if (feat2 != nullptr)
+  //     feats_slam.push_back(feat2);
+  //   assert(landmark.second->_unique_camera_id != -1);
+  //   bool current_unique_cam =
+  //       std::find(message.sensor_ids.begin(), message.sensor_ids.end(), landmark.second->_unique_camera_id) != message.sensor_ids.end();
+  //   if (feat2 == nullptr && current_unique_cam)
+  //     landmark.second->should_marg = true;
+  //   if (landmark.second->update_fail_count > 1)
+  //     landmark.second->should_marg = true;
+  // }
+
+  // ###########################################################################################################################################
+  // Personal modification(Cheol)
   for (std::pair<const size_t, std::shared_ptr<Landmark>> &landmark : state->_features_SLAM) {
-    if (trackARUCO != nullptr) {
-      std::shared_ptr<Feature> feat1 = trackARUCO->get_feature_database()->get_feature(landmark.second->_featid);
+    if (trackAPRIL != nullptr) {
+      std::shared_ptr<Feature> feat1 = trackAPRIL->get_feature_database()->get_feature(landmark.second->_featid);
       if (feat1 != nullptr)
         feats_slam.push_back(feat1);
     }
@@ -482,6 +535,7 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
     if (landmark.second->update_fail_count > 1)
       landmark.second->should_marg = true;
   }
+  // ###########################################################################################################################################3
 
   // Lets marginalize out all old SLAM features here
   // These are ones that where not successfully tracked into the current frame
@@ -584,9 +638,28 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // Remove features that where used for the update from our extractors at the last timestep
   // This allows for measurements to be used in the future if they failed to be used this time
   // Note we need to do this before we feed a new image, as we want all new measurements to NOT be deleted
+  // trackFEATS->get_feature_database()->cleanup();
+  // if (trackARUCO != nullptr) {
+  //   trackARUCO->get_feature_database()->cleanup();
+  // }
+
+  // // First do anchor change if we are about to lose an anchor pose
+  // updaterSLAM->change_anchors(state);
+
+  // // Cleanup any features older than the marginalization time
+  // if ((int)state->_clones_IMU.size() > state->_options.max_clone_size) {
+  //   trackFEATS->get_feature_database()->cleanup_measurements(state->margtimestep());
+  //   if (trackARUCO != nullptr) {
+  //     trackARUCO->get_feature_database()->cleanup_measurements(state->margtimestep());
+  //   }
+  // }
+
+
+  // ############################################################################3
+  // Personal modifications(Cheol)
   trackFEATS->get_feature_database()->cleanup();
-  if (trackARUCO != nullptr) {
-    trackARUCO->get_feature_database()->cleanup();
+  if (trackAPRIL != nullptr) {
+    trackAPRIL->get_feature_database()->cleanup();
   }
 
   // First do anchor change if we are about to lose an anchor pose
@@ -595,10 +668,12 @@ void VioManager::do_feature_propagate_update(const ov_core::CameraData &message)
   // Cleanup any features older than the marginalization time
   if ((int)state->_clones_IMU.size() > state->_options.max_clone_size) {
     trackFEATS->get_feature_database()->cleanup_measurements(state->margtimestep());
-    if (trackARUCO != nullptr) {
-      trackARUCO->get_feature_database()->cleanup_measurements(state->margtimestep());
+    if (trackAPRIL != nullptr) {
+      trackAPRIL->get_feature_database()->cleanup_measurements(state->margtimestep());
     }
   }
+
+  // ############################################################################3
 
   // Finally marginalize the oldest clone if needed
   StateHelper::marginalize_old_clone(state);

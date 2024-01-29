@@ -69,5 +69,5 @@
         "variant": "cpp",
         "bit": "cpp"
     },
-    "cmake.sourceDirectory": "/catkin_ws/build/catkin_tools_prebuild"
+    "cmake.sourceDirectory": "/catkin_ws/old/build/catkin_tools_prebuild"
 }

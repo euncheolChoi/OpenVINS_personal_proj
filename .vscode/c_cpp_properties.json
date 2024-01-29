@@ -8,7 +8,7 @@
                 "/usr/include/opencv4/**",
                 "/opt/ros/noetic/include/**"
             ],
-            "defines": [],
+            "defines": ["ENABLE_APRIL_TAGS=1"],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++14",

@@ -1,0 +1,10 @@
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:[m[K In member function ‘[01m[Kzarray_t* ov_core::TrackApril::detectMarkers(cv::Mat&, std::vector<std::vector<cv::Point_<float> > >&, std::vector<int>)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:73:22:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[K}[m[K’ token
+   73 |     return detections
+      |                      [01;31m[K^[m[K
+      |                      [32m[K;[m[K
+   74 | [32m[K}[m[K;
+      | [32m[K~[m[K                     
+make[2]: *** [CMakeFiles/ov_core_lib.dir/build.make:245: CMakeFiles/ov_core_lib.dir/src/track/TrackApril.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:208: CMakeFiles/ov_core_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

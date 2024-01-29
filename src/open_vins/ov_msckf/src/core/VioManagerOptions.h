@@ -403,6 +403,10 @@ struct VioManagerOptions
   /// If should extract aruco tags and estimate them
   bool use_aruco = true;
 
+  /// If should extract april tags and estimate them ---- Personal modification(Cheol)
+  bool use_april = true; // estimator_config.yaml 에서 정의된 use_april 파라미터를 parser 이용해서 가져온 다음 이 변수에 넣어주는 식으로 동작
+
+
   /// Will half the resolution of the aruco tag image (will be faster)
   bool downsize_aruco = true;
 
@@ -456,6 +460,10 @@ struct VioManagerOptions
       parser->parse_config("use_stereo", use_stereo);
       parser->parse_config("use_klt", use_klt);
       parser->parse_config("use_aruco", use_aruco);
+
+      //personal modi(Cheol)
+      parser->parse_config("use_april", use_april);
+
       parser->parse_config("downsize_aruco", downsize_aruco);
       parser->parse_config("downsample_cameras", downsample_cameras);
       parser->parse_config("num_opencv_threads", num_opencv_threads);

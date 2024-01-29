@@ -1,0 +1,20 @@
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `ov_core::TrackBase::initialize_april_detector()'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `typeinfo for ov_core::TrackBase'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `vtable for ov_core::TrackBase'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/test_webcam.dir/build.make:298: /catkin_ws/devel/.private/ov_core/lib/ov_core/test_webcam] Error 1
+make[1]: *** [CMakeFiles/Makefile2:181: CMakeFiles/test_webcam.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `ov_core::TrackBase::initialize_april_detector()'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `typeinfo for ov_core::TrackBase'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `vtable for ov_core::TrackBase'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/test_tracking.dir/build.make:298: /catkin_ws/devel/.private/ov_core/lib/ov_core/test_tracking] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1234: CMakeFiles/test_tracking.dir/all] Error 2
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `typeinfo for ov_core::TrackBase'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `vtable for ov_core::TrackBase'
+/usr/bin/ld: /catkin_ws/devel/.private/ov_core/lib/libov_core_lib.so: undefined reference to `ov_core::TrackBase::initialize_april_detector()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/test_profile.dir/build.make:298: /catkin_ws/devel/.private/ov_core/lib/ov_core/test_profile] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1072: CMakeFiles/test_profile.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

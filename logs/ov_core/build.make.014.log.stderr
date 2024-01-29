@@ -1,0 +1,7 @@
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:[m[K In member function ‘[01m[Kvoid ov_core::TrackApril::perform_april_tracking(double, const cv::Mat&, size_t, const cv::Mat&)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:173:52:[m[K [01;31m[Kerror: [m[K‘[01m[Kids_aruco[m[K’ was not declared in this scope
+  173 |   TrackApril::detectMarkers(img0, corners[cam_id], [01;31m[Kids_aruco[m[K[cam_id]);
+      |                                                    [01;31m[K^~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/ov_core_lib.dir/build.make:245: CMakeFiles/ov_core_lib.dir/src/track/TrackApril.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:208: CMakeFiles/ov_core_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

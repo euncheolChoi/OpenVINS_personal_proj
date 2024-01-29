@@ -21,12 +21,28 @@ else ()
     set(CATKIN_GLOBAL_INCLUDE_DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/open_vins/")
 endif ()
 
+
+# # APRIL_LIBS 를 만들어서, ov_core_lib에 target_link_library 해줄것.
+# file(GLOB APRILTAG_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/track/AprilTag/apriltag*.c)
+# file(GLOB TAG_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/track/AprilTag/tag*.c)
+# file(GLOB COMMON_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/track/AprilTag/common/*.c ${CMAKE_CURRENT_SOURCE_DIR}/src/track/AprilTag/common/*.h)
+# add_library(APRIL_LIBS ${APRILTAG_SRCS} ${COMMON_SRC} ${TAG_FILES})
+###############################################################
+
+set(APRILTAG_INCLUDE_DIRS "/usr/local/include/apriltag")
+set(APRILTAG_SRC_DIRS "/usr/local/lib/libapriltag.so")
+
+
+###############################################################
+
+
 # Include our header files
 include_directories(
         src
         ${EIGEN3_INCLUDE_DIR}
         ${Boost_INCLUDE_DIRS}
         ${catkin_INCLUDE_DIRS}
+        ${APRILTAG_INCLUDE_DIRS}
 )
 
 # Set link libraries used by all binaries
@@ -34,6 +50,7 @@ list(APPEND thirdparty_libraries
         ${Boost_LIBRARIES}
         ${OpenCV_LIBRARIES}
         ${catkin_LIBRARIES}
+        ${APRILTAG_SRC_DIRS}
 )
 
 ##################################################
@@ -55,8 +72,11 @@ list(APPEND LIBRARY_SOURCES
         src/feat/FeatureDatabase.cpp
         src/feat/FeatureInitializer.cpp
         src/utils/print.cpp
+        # Personal modification
+        src/track/TrackApril.cpp
 )
 file(GLOB_RECURSE LIBRARY_HEADERS "src/*.h")
+# message(${LIBRARY_HEADERS})
 add_library(ov_core_lib SHARED ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 target_link_libraries(ov_core_lib ${thirdparty_libraries})
 target_include_directories(ov_core_lib PUBLIC src/)

@@ -1,0 +1,9 @@
+In file included from [01m[K/catkin_ws/src/open_vins/ov_msckf/src/core/VioManager.cpp:29[m[K:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.h:27:10:[m[K [01;31m[Kfatal error: [m[Kapriltag.h: No such file or directory
+   27 | #include [01;31m[K"apriltag.h"[m[K
+      |          [01;31m[K^~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/ov_msckf_lib.dir/build.make:128: CMakeFiles/ov_msckf_lib.dir/src/core/VioManager.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/Makefile2:1916: CMakeFiles/ov_msckf_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

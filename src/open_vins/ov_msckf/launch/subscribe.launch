@@ -3,7 +3,8 @@
     <!-- what config we are going to run (should match folder name) -->
     <arg name="verbosity"   default="INFO" /> <!-- ALL, DEBUG, INFO, WARNING, ERROR, SILENT -->
     <!-- <arg name="config"      default="euroc_mav" /> euroc_mav, tum_vi, rpng_aruco -->
-    <arg name="config"      default="rpng_aruco" /> 
+    <!-- <arg name="config"      default="rpng_aruco" />  -->
+    <arg name="config"      default="sparo_april" /> 
     <arg name="config_path" default="$(find ov_msckf)/../config/$(arg config)/estimator_config.yaml" />
 
     <!-- mono or stereo and what ros bag to play -->
@@ -13,7 +14,8 @@
     <arg name="bag_rate"    default="1" />
     <!-- <arg name="dataset"     default="V1_01_easy" /> V1_01_easy, V1_02_medium, V2_02_medium -->
     <!-- <arg name="dataset"     default="V1_02_medium" /> V1_01_easy, V1_02_medium, V2_02_medium -->
-    <arg name="dataset"     default="aruco_hallway_01" /> <!-- V1_01_easy, V1_02_medium, V2_02_medium -->
+    <!-- <arg name="dataset"     default="aruco_hallway_01" /> V1_01_easy, V1_02_medium, V2_02_medium -->
+    <arg name="dataset"     default="pro_w_sparo" /> <!-- V1_01_easy, V1_02_medium, V2_02_medium -->
     <arg name="dobag"       default="true" /> <!-- if we should play back the bag -->
     <arg name="bag"         default="/datasets/$(arg dataset).bag" />
 <!--    <arg name="bag"         default="/home/patrick/datasets/$(arg config)/$(arg dataset).bag" />-->

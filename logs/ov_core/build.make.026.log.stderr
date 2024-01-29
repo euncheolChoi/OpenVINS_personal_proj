@@ -1,0 +1,4 @@
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:[m[K In member function ‘[01m[Kvirtual void ov_core::TrackApril::feed_new_camera(const ov_core::CameraData&)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:115:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  115 |     for (int i = 0; [01;35m[Ki < num_images[m[K; i++) {
+      |                     [01;35m[K~~^~~~~~~~~~~~[m[K

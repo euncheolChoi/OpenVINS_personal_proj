@@ -30,6 +30,7 @@ if (NOT ENABLE_APRIL_TAGS)
 else ()
     add_definitions(-DENABLE_APRIL_TAGS=1)
 endif ()
+message(${ENABLE_APRIL_TAGS})
 ##############################################
 
 
@@ -65,6 +66,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g3 -Wall -Wuninitialized -Wmaybe-uninit
 # NOTE: https://github.com/romainreignier/share_ros1_ros2_lib_demo
 find_package(catkin QUIET COMPONENTS roscpp)
 find_package(ament_cmake QUIET)
+find_package(apriltag REQUIRED)
+
 if (catkin_FOUND)
     message(STATUS "ROS *1* version found, building ROS1.cmake")
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/ROS1.cmake)

@@ -1,0 +1,7 @@
+[01m[K/catkin_ws/src/open_vins/ov_msckf/src/core/VioManager.cpp:[m[K In constructor ‘[01m[Kov_msckf::VioManager::VioManager(ov_msckf::VioManagerOptions&)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_msckf/src/core/VioManager.cpp:157:5:[m[K [01;31m[Kerror: [m[K‘[01m[KtrackAPRIL[m[K’ was not declared in this scope
+  157 |     [01;31m[KtrackAPRIL[m[K = std::shared_ptr<TrackBase>(new TrackApril(state->_cam_intrinsics_cameras, state->_options.max_aruco_features,
+      |     [01;31m[K^~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/ov_msckf_lib.dir/build.make:128: CMakeFiles/ov_msckf_lib.dir/src/core/VioManager.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:1916: CMakeFiles/ov_msckf_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

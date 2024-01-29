@@ -90,6 +90,10 @@ public:
 
   virtual ~TrackBase() {}
 
+
+  // Personal modification(Cheol)
+  // virtual void initialize_april_detector() = 0;
+
   /**
    * @brief Process a new image
    * @param message Contains our timestamp, images, and camera ids

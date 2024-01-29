@@ -1,0 +1,9 @@
+In file included from [01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.cpp:23[m[K:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.h:[m[K In constructor ‘[01m[Kov_core::TrackApril::TrackApril(std::unordered_map<long unsigned int, std::shared_ptr<ov_core::CamBase> >, int, bool, ov_core::TrackBase::HistogramMethod, bool)[m[K’:
+[01m[K/catkin_ws/src/open_vins/ov_core/src/track/TrackApril.h:79:32:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Koverride[m[K’
+   79 |     initialize_april_detector()[01;31m[K [m[K[32m[Koverride[m[K;
+      |                                [01;31m[K^[m[K[32m[K~~~~~~~~[m[K
+      |                                [32m[K;[m[K
+make[2]: *** [CMakeFiles/ov_core_lib.dir/build.make:245: CMakeFiles/ov_core_lib.dir/src/track/TrackApril.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:208: CMakeFiles/ov_core_lib.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2
